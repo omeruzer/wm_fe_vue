@@ -8,7 +8,7 @@
         </div>
 
         <div class="card-body">
-          <pie-chart v-if="load" :data="chartData" :height="200" />
+          <pie-chart v-if="load" :data="chartData" :height="100" />
           <div v-else class="d-flex justify-content-center">
             <Loader />
           </div>
@@ -21,8 +21,10 @@
 
 <script>
 import PieChart from "../charts/PieChart.vue";
+import Loader from "../Loader.vue";
+import axios from 'axios'
 export default {
-  components: { PieChart },
+  components: { PieChart,Loader },
   data() {
     return {
       chartData: {},
@@ -34,8 +36,8 @@ export default {
   },
   methods: {
     async getData() {
-      await this.$axios
-        .post("http://localhost:8000/api/reports/reports-brand")
+      await axios
+        .post("/api/reports/reports-brand")
         .then((result) => {
           this.chartData = {
             labels: result.data.brands,
@@ -43,7 +45,7 @@ export default {
               {
                 label: "Visualizaciones",
                 data: result.data.sell,
-                backgroundColor: "rgba(20, 255, 0, 0.3)",
+                backgroundColor: "rgba(20, 255, 0, 0.3 )",
                 borderColor: "rgba(100, 255, 0, 1)",
                 borderWidth: 2,
               },

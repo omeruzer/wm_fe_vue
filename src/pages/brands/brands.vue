@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ContentHeader :title="$t('BRANDS')" />
-    <Buttons :buttonTitle="buttonTitle" @refreshData="list = $event" />
+    <ContentHeader :title="$t('BRANDS')"  />
+    <Buttons :buttonTitle="buttonTitle" btnType='brand' @refreshData="list = $event" />
 
     <div class="row" v-if="isComplete">
       <div v-if="list.length == 0" class="col-md-12">

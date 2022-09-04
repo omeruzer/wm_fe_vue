@@ -113,7 +113,7 @@
                             <b>{{ product.qty }}</b> {{ $t("QTY") }}
                           </div>
                           <div class="">
-                            <b>{{ product.price }}₺</b>
+                            <b>{{ product.price }}{{ money }}</b>
                           </div>
                         </div>
                       </div>
@@ -138,7 +138,7 @@
                         </div>
                         <div class="">
                           {{ $t("TOTAL_INVOICE_AMOUNT") }}:
-                          <b> {{ total() }}₺ </b>
+                          <b> {{ total() }}{{ money }} </b>
                         </div>
                       </div>
                     </div>
@@ -262,7 +262,7 @@
                       <b>{{ product.qty }}</b> {{ $t("QTY") }}
                     </div>
                     <div class="">
-                      <b>{{ product.price }}₺</b>
+                      <b>{{ product.price }}{{ money }}</b>
                     </div>
                   </div>
                 </div>
@@ -286,7 +286,7 @@
                   </div>
                   <div class="">
                     {{ $t("TOTAL_INVOICE_AMOUNT") }}:
-                    <b> {{ total() }}₺ </b>
+                    <b> {{ total() }}{{ money }} </b>
                   </div>
                 </div>
               </div>
@@ -312,6 +312,11 @@
 <script>
 export default {
   props: ["item"],
+  data() {
+    return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+    };
+  },
   created() {
     this.total();
     this.totalProduct();

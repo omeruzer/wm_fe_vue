@@ -13,7 +13,7 @@
           <div v-if="loaderInvoices">
             <table
               id="dataTable"
-              class="table  table-hover display"
+              class="table table-hover display"
               style="width: 100%"
             >
               <thead>
@@ -30,22 +30,18 @@
                 <tr v-for="(item, i) in lastInvoices" :key="i">
                   <td style="width: 1px">
                     <div
-                      v-if="item.type"
-                      v-b-tooltip.hover
-                      :title="'Satış'"
+                      v-if="item.type=='1'"
                       class="sales-circle"
                     ></div>
                     <div
                       v-else
-                      v-b-tooltip.hover
-                      :title="'İade'"
                       class="return-circle"
                     ></div>
                   </td>
                   <td>{{ item.invoice_no }}</td>
                   <td>{{ item.get_customer.name }}</td>
                   <td>{{ item.productQty }}</td>
-                  <td>{{ item.amount }}₺</td>
+                  <td>{{ item.amount }}{{ money }}</td>
                   <td>{{ item.created_at.substr(0, 10) }}</td>
                 </tr>
               </tbody>
@@ -68,6 +64,11 @@ import Loader from "./Loader.vue";
 export default {
   props: ["lastInvoices", "loaderInvoices"],
   components: { Loader },
+  data() {
+    return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+    };
+  },
 };
 </script>
 

@@ -166,7 +166,7 @@
                     </li> -->
                     
           <!-- ÇOKLU DİL SİSTEMİ -->
-          <!-- <li class="list-inline-item dropdown notif">
+          <li class="list-inline-item dropdown notif">
             <a
               class="nav-link dropdown-toggle nav-user"
               data-toggle="dropdown"
@@ -331,7 +331,7 @@
                 </div>
               </a>
             </div>
-          </li> -->
+          </li>
         </ul>
 
         <ul class="list-inline menu-left mb-0 d-xs-block d-md-none">

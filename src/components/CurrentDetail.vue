@@ -11,7 +11,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              <code>{{ item.title }}</code> - {{ item.price }} ₺
+              <code>{{ item.title }}</code> - {{ item.price }} {{ money }}
             </h5>
             <button
               type="button"
@@ -21,7 +21,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div class="d-block ">
+            <div class="d-block">
               <div class="row">
                 <div class="form-group ml-3">
                   <span>
@@ -71,7 +71,7 @@
               <div class="row">
                 <div class="form-group ml-3">
                   <label for="">Miktar:</label>
-                  <span>{{ item.price }}₺</span>
+                  <span>{{ item.price }}{{ money }}</span>
                 </div>
               </div>
               <div class="row">
@@ -100,6 +100,11 @@
 <script>
 export default {
   props: ["item"],
+  data() {
+    return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+    };
+  },
 };
 </script>
 

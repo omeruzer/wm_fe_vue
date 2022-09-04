@@ -8,6 +8,7 @@
         :list="list"
       />
       <Buttons
+        btnType="invoice"
         :buttonTitle="buttonTitle"
         @refreshData="list = $event"
         :fun="getInvoice"
@@ -51,7 +52,10 @@
                     <tbody>
                       <tr v-for="(item, i) in list.data" :key="i">
                         <td style="width: 1px">
-                          <div v-if="item.type" class="sales-circle"></div>
+                          <div
+                            v-if="item.type == '1'"
+                            class="sales-circle"
+                          ></div>
                           <div v-else class="return-circle"></div>
                         </td>
                         <td>{{ item.invoice_no }}</td>
@@ -59,7 +63,7 @@
                         <td>{{ item.productQty }}</td>
                         <td>
                           {{ moneyFormat(item.amount).substr(1) }}
-                          ₺
+                          {{ money }}
                         </td>
                         <td>{{ item.invoice_date.substr(0, 10) }}</td>
                         <td>
@@ -70,12 +74,8 @@
                             >
                               <i class="fa fa-eye"></i>
                             </button>
-                            <router-link
-                              :to="'/invoices/'+item.id"
-                            >
-                              <button
-                                class="btn btn-warning mr-2"
-                              >
+                            <router-link :to="'/invoices/' + item.id">
+                              <button class="btn btn-warning mr-2">
                                 <i class="fa fa-edit"></i>
                               </button>
                             </router-link>
@@ -137,6 +137,7 @@ export default {
       loadPage: false,
       isComplete: false,
       links: null,
+      money: JSON.parse(localStorage.getItem("user")).money,
     };
   },
   components: {

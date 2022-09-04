@@ -8,14 +8,14 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <i class="fa fa-plus"></i> {{ buttonTitle }} {{ $t("ADD") }}
+          <i class="fa fa-plus"></i> {{ $t("ADD") }}
         </button>
       </div>
     </div>
 
     <!-- Marka Ekle -->
     <div
-      v-if="buttonTitle == $t('BRAND')"
+      v-if="btnType == 'brand'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -59,7 +59,7 @@
 
     <!-- Kategori Ekle -->
     <div
-      v-if="buttonTitle == $t('CATEGORY')"
+      v-if="btnType == 'category'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -103,7 +103,7 @@
 
     <!-- Kalıp Ekle -->
     <div
-      v-if="buttonTitle == $t('PATTERN')"
+      v-if="btnType == 'pattern'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -144,7 +144,7 @@
 
     <!-- Kumaş Ekle -->
     <div
-      v-if="buttonTitle == $t('MATERIAL')"
+      v-if="btnType == 'material'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -185,7 +185,7 @@
 
     <!-- Sezon Ekle -->
     <div
-      v-if="buttonTitle == $t('SEASON')"
+      v-if="btnType == 'season'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -226,7 +226,7 @@
 
     <!-- Departman Ekle -->
     <div
-      v-if="buttonTitle == $t('DEPARTMAN')"
+      v-if="btnType == 'departman'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -267,7 +267,7 @@
 
     <!-- Personel Ekle -->
     <div
-      v-if="buttonTitle == $t('PERSONEL')"
+      v-if="btnType == 'personel'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -352,7 +352,7 @@
 
     <!-- Ürün Ekle -->
     <div
-      v-if="buttonTitle == $t('PRODUCT')"
+      v-if="btnType == 'product'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -527,7 +527,7 @@
 
     <!-- Müşteri Ekle -->
     <div
-      v-if="buttonTitle == $t('CUSTOMER')"
+      v-if="btnType == 'customer'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -592,7 +592,7 @@
 
     <!-- Gelir - Gider Ekle -->
     <div
-      v-if="buttonTitle == $t('CURRENT')"
+      v-if="btnType == 'current'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -687,7 +687,7 @@
 
     <!-- Fatura Ekle -->
     <div
-      v-if="buttonTitle == $t('INVOICE')"
+      v-if="btnType == 'invoice'"
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -735,7 +735,13 @@
             </b-form-group>
             <b-form-group :label="$t('INVOICE_DATE')">
               <div class="d-flex">
-                <input type="date" name="" v-model="form.invoice_date" id="" class="form-control">
+                <input
+                  type="date"
+                  name=""
+                  v-model="form.invoice_date"
+                  id=""
+                  class="form-control"
+                />
                 <!-- <b-form-datepicker
                   v-model="form.invoice_date"
                 ></b-form-datepicker> -->
@@ -847,7 +853,7 @@
                     </p>
                     <p>
                       {{ $t("TOTAL_INVOICE_AMOUNT") }} :
-                      <b>{{ totalInvoiceAmount }}₺</b>
+                      <b>{{ totalInvoiceAmount }}{{ money }}</b>
                     </p>
                   </div>
                 </div>
@@ -862,138 +868,6 @@
         </div>
       </div>
     </div>
-    <!-- <b-modal
-      v-if="buttonTitle == $t('INVOICE')"
-      size="lg"
-      v-model="modalShow"
-      :title="buttonTitle + ' ' + $t('ADD')"
-      @ok="addInvoice"
-      :ok-title="$t('SAVE')"
-      :cancel-title="$t('CANCEL')"
-    >
-      <b-form-group :label="$t('INVOICE_TYPE')" v-slot="{ ariaDescribedby }">
-        <div class="d-flex">
-          <b-form-radio
-            v-model="form.type"
-            :aria-describedby="ariaDescribedby"
-            class="m-2"
-            name="some-radios"
-            value="1"
-          >
-            {{ $t("SELL") }}
-          </b-form-radio>
-          <b-form-radio
-            v-model="form.type"
-            :aria-describedby="ariaDescribedby"
-            class="m-2"
-            name="some-radios"
-            value="0"
-          >
-            {{ $t("RETURN") }}
-          </b-form-radio>
-        </div>
-      </b-form-group>
-      <b-form-group :label="$t('INVOICE_DATE')">
-        <div class="d-flex">
-          <b-form-datepicker v-model="form.invoice_date"></b-form-datepicker>
-        </div>
-      </b-form-group>
-      <b-form-group>
-        <label for="">{{ $t("CUSTOMER") }}</label>
-        <select id="" v-model="form.customer_id" class="form-control mb-3">
-          <option
-            class=""
-            v-for="(item, i) in customers"
-            :key="i"
-            :value="item.id"
-          >
-            {{ item.name }}
-          </option>
-        </select>
-      </b-form-group>
-      <div class="row" v-for="(item, index) in invoiceProducts" :key="index">
-        <div class="col-md-6">
-          <b-form-group>
-            <label for="">{{ $t("PRODUCT") }}</label>
-            <select id="" v-model="item.product_id" class="form-control mb-3">
-              <option
-                class=""
-                v-for="(item, i) in products"
-                :key="i"
-                :value="item.id"
-              >
-                {{ item.code }} /{{ item.name }}
-              </option>
-            </select>
-          </b-form-group>
-        </div>
-        <div class="col-md-2">
-          <b-form-group>
-            <label for="">{{ $t("QTY") }}</label>
-            <b-form-input
-              @change="invoiceProductCount"
-              v-model="item.qty"
-              :placeholder="$t('QTY')"
-              required
-            >
-            </b-form-input>
-          </b-form-group>
-        </div>
-        <div class="col-md-3">
-          <b-form-group>
-            <label for="">{{ $t("PRICE") }}</label>
-            <b-form-input
-              @change="invoiceTotalAmount"
-              v-model="item.price"
-              :placeholder="$t('PRICE')"
-              required
-            >
-            </b-form-input>
-          </b-form-group>
-        </div>
-        <div
-          class="col-md-1"
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <button
-            class="btn btn-danger"
-            @click="removeInvoiceProductControl(item.id)"
-          >
-            <i class="fa fa-trash"></i>
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div
-          class="col-md-12"
-          style="display: flex; justify-content: end; align-items: center"
-        >
-          <button class="btn btn-success" @click="addInvoiceProduct">
-            <i class="fa fa-plus"></i> {{ $t("ADD_PRODUCT_TO_INVOICE") }}
-          </button>
-        </div>
-      </div>
-      <div class="row mt-3 d-flex justify-content-end">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header">{{ $t("INVOICE_DETAIL") }}</div>
-            <div class="card-body">
-              <p>
-                {{ $t("TOTAL_PRODUCT_TYPE") }} :
-                <b>{{ invoiceProducts.length }}</b>
-              </p>
-              <p>
-                {{ $t("TOTAL_PRODUCT_COUNT") }} : <b>{{ totalProductCount }}</b>
-              </p>
-              <p>
-                {{ $t("TOTAL_INVOICE_AMOUNT") }} :
-                <b>{{ totalInvoiceAmount }}₺</b>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-modal> -->
   </div>
 </template>
 
@@ -1003,6 +877,8 @@ export default {
   components: {},
   data() {
     return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+
       modalShow: false,
       img: {},
       form: {},
@@ -1029,6 +905,9 @@ export default {
   },
   props: {
     buttonTitle: {
+      type: String,
+    },
+    btnType: {
       type: String,
     },
     fun: { type: Function },

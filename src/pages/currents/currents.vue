@@ -24,6 +24,7 @@
         </div>
       </div>
       <Buttons
+        btnType="current"
         :buttonTitle="buttonTitle"
         @refreshData="list = $event"
         :currentFunc="getCurrent"
@@ -72,7 +73,7 @@
                         <td>{{ item.desc ? item.desc : "-" }}</td>
                         <td>
                           {{ moneyFormat(item.price).substr(1) }}
-                          ₺
+                          {{ money }}
                         </td>
                         <td>{{ item.current_date.substr(0, 10) }}</td>
                         <td>
@@ -146,6 +147,7 @@ export default {
       links: null,
       currentItems: null,
       currentItemsLoad: false,
+      money: JSON.parse(localStorage.getItem("user")).money,
     };
   },
   head() {

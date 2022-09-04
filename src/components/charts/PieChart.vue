@@ -1,11 +1,26 @@
+<template>
+  <Pie :chart-data="data" :height="height" />
+</template>
+
 <script>
-import { Pie } from "vue-chartjs";
+import { Pie } from "vue-chartjs/legacy";
+
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale,
+} from "chart.js";
+
+ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
 
 export default {
-  extends: Pie,
-  props: ["data", "options"],
-  mounted() {
-    this.renderChart(this.data, this.options);
+  name: "PieChart",
+  components: {
+    Pie,
   },
+  props: ["data", "height"],
 };
 </script>

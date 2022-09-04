@@ -236,7 +236,7 @@
                 >
                 <span
                   >{{ $t("TOTAL_INVOICE_AMOUNT") }}:
-                  <b>{{ totalPrice() }}₺</b></span
+                  <b>{{ totalPrice() }}{{ money }}</b></span
                 >
               </div>
             </div>
@@ -280,6 +280,7 @@ export default {
       products: [],
       isComplete: false,
       invoiceProducts: [],
+      money: JSON.parse(localStorage.getItem("user")).money,
     };
   },
   components: {

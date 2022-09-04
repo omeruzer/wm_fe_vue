@@ -5,8 +5,7 @@
         <div class="card-box noradius noborder bg-danger">
           <h6 class="text-white text-uppercase m-b-20">{{ $t("TODAY") }}</h6>
           <h1 v-if="loader" class="m-b-20 text-white counter">
-            {{ moneyFormat(item.today_total_sell).substr(1)
-            }}₺
+            {{ moneyFormat(item.today_total_sell).substr(1) }}{{ money }}
           </h1>
           <Loader v-else />
           <span class="text-white">{{ $t("SELL") }}</span>
@@ -17,8 +16,7 @@
         <div class="card-box noradius noborder bg-purple">
           <h6 class="text-white text-uppercase m-b-20">{{ $t("TODAY") }}</h6>
           <h1 v-if="loader" class="m-b-20 text-white counter">
-            {{ moneyFormat(item.today_total_return).substr(1)
-            }}₺
+            {{ moneyFormat(item.today_total_return).substr(1) }}{{ money }}
           </h1>
           <Loader v-else />
 
@@ -32,8 +30,7 @@
             {{ $t("LAST_30_DAY") }}
           </h6>
           <h1 v-if="loader" class="m-b-20 text-white counter">
-            {{ moneyFormat(item.last_mount_total_sell).substr(1)
-            }}₺
+            {{ moneyFormat(item.last_mount_total_sell).substr(1) }}{{ money }}
           </h1>
           <Loader v-else />
           <span class="text-white">{{ $t("SELL") }}</span>
@@ -46,8 +43,7 @@
             {{ $t("LAST_30_DAY") }}
           </h6>
           <h1 v-if="loader" class="m-b-20 text-white counter">
-            {{ moneyFormat(item.last_mount_total_return).substr(1)
-            }}₺
+            {{ moneyFormat(item.last_mount_total_return).substr(1) }}{{ money }}
           </h1>
           <Loader v-else />
           <span class="text-white">{{ $t("RETURN") }}</span>
@@ -61,6 +57,11 @@
 import Loader from "./Loader.vue";
 export default {
   props: ["item", "loader"],
+  data() {
+    return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+    };
+  },
   methods: {
     moneyFormat(number) {
       var formatter = new Intl.NumberFormat("en-US", {

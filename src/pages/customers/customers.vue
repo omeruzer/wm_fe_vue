@@ -2,7 +2,7 @@
   <div>
     <ContentHeader :title="$t('CUSTOMERS')" />
 
-    <Buttons :buttonTitle="buttonTitle" @refreshData="customers = $event" />
+    <Buttons :buttonTitle="buttonTitle" btnType='customer' @refreshData="customers = $event" />
 
     <div class="row" v-if="isComplete">
       <div v-if="customers.length == 0" class="col-md-12">

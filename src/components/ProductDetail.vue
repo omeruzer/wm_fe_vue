@@ -93,19 +93,21 @@
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("PRODUCT_PRICE") }}:</label>
-                  <span>{{ item.price }} ₺</span>
+                  <span>{{ item.price }} {{ money }}</span>
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("PRODUCT_COST") }}:</label>
-                  <span>{{ item.cors }} ₺</span>
+                  <span>{{ item.cors }} {{ money }}</span>
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("ONE_PRODUCT_PER") }}:</label>
-                  <span>{{ Math.ceil(item.price - item.cors) }} ₺</span>
+                  <span
+                    >{{ Math.ceil(item.price - item.cors) }} {{ money }}</span
+                  >
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
@@ -129,13 +131,13 @@
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("TOTAL_PRODUCT_TURNOVER") }}:</label>
-                  <span>{{ item.totalSellPrice }} ₺</span>
+                  <span>{{ item.totalSellPrice }} {{ money }}</span>
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("TOTAL_PRODUCT_PROFIT") }}:</label>
-                  <span>{{ item.totalSellProfit }} ₺</span>
+                  <span>{{ item.totalSellProfit }} {{ money }}</span>
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
@@ -167,6 +169,11 @@
 export default {
   props: ["item"],
   async mounted() {},
+  data() {
+    return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+    };
+  },
   methods: {},
 };
 </script>

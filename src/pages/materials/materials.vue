@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentHeader :title="$t('MATERIALS')" />
-    <Buttons :buttonTitle="buttonTitle" @refreshData="list = $event" />
+    <Buttons :buttonTitle="buttonTitle" btnType="material" @refreshData="list = $event" />
 
     <div class="row" v-if="isComplete">
       <div v-if="list.length == 0" class="col-md-12">

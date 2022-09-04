@@ -21,8 +21,10 @@
 
 <script>
 import LineChart from "../charts/LineChart.vue";
+import Loader from "../Loader.vue";
+import axios from 'axios'
 export default {
-  components: { LineChart },
+  components: { LineChart,Loader },
   data() {
     return {
       chartData: {},
@@ -34,8 +36,8 @@ export default {
   },
   methods: {
     async getDaily() {
-      await this.$axios
-        .post("http://localhost:8000/api/reports/reports-sell-return-mounthly")
+      await axios
+        .post("/api/reports/reports-sell-return-mounthly")
         .then((result) => {
           this.period = result.data.sell.period;
           this.sellData = result.data.sell.data;
@@ -44,13 +46,13 @@ export default {
             labels: this.period,
             datasets: [
               {
-                label: this.$t("SELL") + ` (${this.$auth.user.money})`,
-                backgroundColor: "rgba(0, 255, 0, 0.3)",
+                label: this.$t("SELL"),
+                backgroundColor: ["rgba(0, 255, 0, 0.3)"],
                 fill: true,
                 data: this.sellData,
               },
               {
-                label: this.$t("RETURN") + ` (${this.$auth.user.money})`,
+                label: this.$t("RETURN"),
                 backgroundColor: "rgba(255, 0, 0, 0.3)",
                 fill: true,
                 data: this.returnData,

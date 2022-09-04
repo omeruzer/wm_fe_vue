@@ -7,7 +7,11 @@
         @itemFilterLinks="links = $event"
         :list="list"
       />
-      <Buttons :buttonTitle="buttonTitle" @refreshData="list = $event" />
+      <Buttons
+        :buttonTitle="buttonTitle"
+        btnType="product"
+        @refreshData="list = $event"
+      />
       <div v-if="list.length == 0" class="col-md-12">
         <isEmptyAlert :buttonTitle="buttonTitle" />
       </div>
@@ -16,10 +20,7 @@
           <div class="card mb-3">
             <div class="card-body">
               <div v-if="loadPage" class="table-responsive">
-                <table
-                  id="example1"
-                  class="table table-hover display"
-                >
+                <table id="example1" class="table table-hover display">
                   <thead>
                     <tr>
                       <th>{{ $t("PRODUCT_NAME") }}</th>
@@ -45,7 +46,7 @@
                       <td>
                         <div class="" style="display: flex">
                           <span>{{ item.price }}</span>
-                          <span>₺</span>
+                          <span>{{ money }}</span>
                         </div>
                       </td>
                       <td>
@@ -56,12 +57,8 @@
                           >
                             <i class="fa fa-eye"></i>
                           </button>
-                          <router-link
-                            :to="'/products/'+item.id"
-                          >
-                            <button
-                              class="btn btn-warning mr-2"
-                            >
+                          <router-link :to="'/products/' + item.id">
+                            <button class="btn btn-warning mr-2">
                               <i class="fa fa-edit"></i>
                             </button>
                           </router-link>
@@ -119,6 +116,7 @@ export default {
   data() {
     return {
       links: null,
+      money: JSON.parse(localStorage.getItem("user")).money,
       title: this.$t("PRODUCTS"),
       buttonTitle: this.$t("PRODUCT"),
       list: null,
@@ -132,7 +130,7 @@ export default {
     ItemFilter,
     Loader,
     Buttons,
-    ProductDetail
+    ProductDetail,
   },
   mounted() {
     this.getProducts();
@@ -154,12 +152,10 @@ export default {
         .catch((err) => {});
     },
     async getDetail(id) {
-      await axios
-        .post("/api/product/detail/" + id)
-        .then((result) => {
-          this.item = result.data;
-          $("#exampleModal-" + id).modal("show");
-        });
+      await axios.post("/api/product/detail/" + id).then((result) => {
+        this.item = result.data;
+        $("#exampleModal-" + id).modal("show");
+      });
     },
     async remove(id) {
       this.$swal

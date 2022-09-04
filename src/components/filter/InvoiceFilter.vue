@@ -37,12 +37,12 @@
             <div class="form-group mb-3">
               <label for="">{{ $t("SELECTED_PRICE") }}</label>
               <select id="" v-model="filterw.price" class="form-control mb-3">
-                <option value="1">1₺-50₺</option>
-                <option value="2">50₺-100₺</option>
-                <option value="3">100₺-200₺</option>
-                <option value="4">200₺-500₺</option>
-                <option value="5">500₺-1000₺</option>
-                <option value="6">1000₺+</option>
+                <option value="1">1{{ money }}-50{{ money }}</option>
+                <option value="2">50{{ money }}-100{{ money }}</option>
+                <option value="3">100{{ money }}-200{{ money }}</option>
+                <option value="4">200{{ money }}-500{{ money }}</option>
+                <option value="5">500{{ money }}-1000{{ money }}</option>
+                <option value="6">1000{{ money }}+</option>
               </select>
             </div>
           </div>
@@ -82,11 +82,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   props: ["list"],
   data() {
     return {
+      money: JSON.parse(localStorage.getItem("user")).money,
+
       customers: [],
       filterw: {},
     };
