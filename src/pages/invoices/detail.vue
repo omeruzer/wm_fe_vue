@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('INVOICES')" />
 
     <div class="row mb-3" style="justify-content: end">
       <div class="d-flex justify-content-end">

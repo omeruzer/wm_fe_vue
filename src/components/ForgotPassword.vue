@@ -30,8 +30,8 @@
         <div class="form-group">
           <div class="d-flex justify-content-center align-items-center">
             <div class="">
-              <nuxt-link to="/"
-                ><span class="m-1">{{ $t("GO_TO_HOME") }}</span></nuxt-link
+              <router-link to="/"
+                ><span class="m-1">{{ $t("GO_TO_HOME") }}</span></router-link
               >
             </div>
           </div>

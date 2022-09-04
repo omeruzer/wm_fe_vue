@@ -1,8 +1,10 @@
 <template>
   <div class="col-md-6 col-lg-6">
     <div class="login-wrap p-4 p-md-5">
-      <div v-if="isError" class="alert alert-danger">Kullanıcı Bulunamadı</div>
-      <h3 class="text-center mb-12">Giriş Yap</h3>
+      <div v-if="isError" class="alert alert-danger">
+        {{ $t("NOT_FOUND_USER") }}
+      </div>
+      <h3 class="text-center mb-12">{{ $t("LOGIN") }}</h3>
       <form @submit.prevent="login()">
         <div class="form-group">
           <input
@@ -11,7 +13,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="E-mail"
+            :placeholder="$t('E-MAIL')"
             required
           />
         </div>
@@ -22,7 +24,7 @@
             name="password"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Şifre"
+            :placeholder="$t('PASSWORD')"
             required
           />
         </div>
@@ -31,7 +33,7 @@
             type="submit"
             class="form-control btn btn-primary rounded submit px-3"
           >
-            Giriş Yap
+            {{ $t("LOGIN") }}
           </button>
         </div>
       </form>
@@ -40,13 +42,13 @@
           <div class="d-flex justify-content-center align-items-center">
             <div class="">
               <router-link to="/register"
-                ><span class="m-1">Üye Ol</span></router-link
+                ><span class="m-1">{{ $t("SIGNUP") }}</span></router-link
               >
             </div>
             <div class="">/</div>
             <div class="">
               <router-link to="/forgot-password"
-                ><span class="m-1">Şifremi Unuttum</span></router-link
+                ><span class="m-1">{{ $t("FORGOT_PASSWORD") }}</span></router-link
               >
             </div>
           </div>
@@ -70,12 +72,13 @@ export default {
   },
   methods: {
     async login() {
-      axios
-        .post("/api/login", this.form,{withCredentials:true})
+      await axios
+        .post("/api/login", this.form)
         .then(async (result) => {
           if (result.data.message == "Success") {
-            localStorage.setItem("a", result.data.user);
             localStorage.setItem("token", result.data.token);
+            axios.defaults.headers.common["Authorization"] =
+              await `Bearer ${localStorage.getItem("token")}`;
             await axios
               .get("/api/user")
               .then((result) => {

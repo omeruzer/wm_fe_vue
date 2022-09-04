@@ -39,8 +39,7 @@
                     "
                     v-else
                     :src="
-                      'http://localhost:8000/assets/images/products/' +
-                      item.file
+                      'https://bymmc.shop/assets/images/products/' + item.file
                     "
                     alt=""
                     srcset=""

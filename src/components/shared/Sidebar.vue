@@ -10,10 +10,10 @@
               <a href="#">
                 <div class="ml-2">
                   <p>
-                    Merhaba, <b>{{ user.name }}</b>
+                    {{ $t("HELLO") }}, <b>{{ user.name }}</b>
                   </p>
                   <span
-                    >Mağaza: <b>{{ user.shop_name }}</b></span
+                    >{{ $t("SHOP") }}: <b>{{ user.shop_name }}</b></span
                   >
                 </div>
               </a>
@@ -21,68 +21,68 @@
             <hr style="border-top: 1px solid white" />
             <li class="submenu">
               <router-link to="/dashboard" tag="a">
-                <i class="fas fa-bars"></i> Anasayfa</router-link
+                <i class="fas fa-bars"></i> {{ $t("HOME") }}</router-link
               >
             </li>
 
             <li class="submenu">
               <router-link to="/invoices" tag="a">
-                <i class="fa fa-check"></i> Faturalar
+                <i class="fa fa-check"></i> {{ $t("INVOICES") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/products" tag="a">
-                <i class="fa fa-tag"></i>Ürünler
+                <i class="fa fa-tag"></i> {{ $t("PRODUCTS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/categories" tag="a">
-                <i class="fas fa-list"></i> Kategoriler
+                <i class="fas fa-list"></i> {{ $t("CATEGORIES") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/pattern" tag="a">
-                <i class="fa fa-square"></i> Kalıplar
+                <i class="fa fa-square"></i> {{ $t("PATTERNS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/materials" tag="a">
-                <i class="fas fa-list"></i> Kumaşlar
+                <i class="fas fa-list"></i> {{ $t("MATERIALS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/brands" tag="a">
-                <i class="fas fa-copyright"></i> Markalar
+                <i class="fas fa-copyright"></i> {{ $t("BRANDS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/current" tag="a">
-                <i class="fa fa-arrow-right-arrow-left"></i> Gelir Gider
+                <i class="fa fa-arrow-right-arrow-left"></i> {{ $t("CURRENT") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/customers" tag="a">
-                <i class="fas fa-users"></i> Müşteriler
+                <i class="fas fa-users"></i> {{ $t("CUSTOMERS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/departmans" tag="a">
-                <i class="fa-solid fa-people-roof"></i> Departmanlar
+                <i class="fa-solid fa-people-roof"></i> {{ $t("DEPARTMANS") }}
               </router-link>
             </li>
             <li class="submenu">
               <router-link to="/personels" tag="a"
-                ><i class="fa-solid fa-person"></i> Personeller
+                ><i class="fa-solid fa-person"></i> {{ $t("PERSONELS") }}
               </router-link>
             </li>
-            <!-- <li class="submenu">
+            <li class="submenu">
               <router-link to="/reports" tag="a">
-                <i class="fa-solid fa-chart-line"></i> Raporlar
+                <i class="fa-solid fa-chart-line"></i> {{ $t("REPORTS") }}
               </router-link>
-            </li> -->
+            </li>
             <li class="submenu">
               <router-link to="/seasons" tag="a">
-                <i class="fa fa-list"></i> Sezonlar
+                <i class="fa fa-list"></i> {{ $t("SEASONS") }}
               </router-link>
             </li>
             <!-- <li class="submenu">
@@ -90,13 +90,13 @@
                         </li> -->
             <li class="submenu">
               <router-link to="/settings" tag="a">
-                <i class="fa fa-gear"></i> Ayarlar
+                <i class="fa fa-gear"></i> {{ $t("SETTINGS") }}
               </router-link>
             </li>
             <li class="submenu">
               <a @click="logout()" href="#">
                 <i class="fa fa-arrow-right-from-bracket"></i>
-                Çıkış yap
+                {{ $t("LOGOUT") }}
               </a>
             </li>
           </ul>

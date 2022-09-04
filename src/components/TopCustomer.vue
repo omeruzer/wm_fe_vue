@@ -12,7 +12,7 @@
           style="height: 550px; overflow-y: scroll"
         >
           <div v-if="loaderCustomer">
-            <div v-if="item.customers && item.customers.length > 0" class="">
+            <div v-if="item.customers && item.customers.lenght > 0" class="">
               <div v-for="(item, i) in item.customers" :key="i" class="">
                 <div v-if="item.orderCount > 0">
                   <div

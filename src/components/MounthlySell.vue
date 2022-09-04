@@ -21,8 +21,10 @@
 
 <script>
 import MounthlySellChart from './MounthlySellChart.vue';
+import Loader from "./Loader.vue";
+import axios from 'axios'
 export default {
-  components: { MounthlySellChart },
+  components: { MounthlySellChart,Loader },
   data() {
     return {
       sellData: [],
@@ -37,7 +39,7 @@ export default {
   },
   methods: {
     async getDaily() {
-      await this.$axios.post('http://localhost:8000/api/statistic/mounthly-sell')
+      await axios.post('/api/statistic/mounthly-sell')
         .then((result) => {
           this.period = result.data.sell.period
           this.sellData = result.data.sell.data
@@ -51,7 +53,9 @@ export default {
                 label: this.$t('SELL'),
                 backgroundColor: 'rgba(0, 255, 0, 0.3)',
                 fill: true,
-                data: this.sellData
+                data: this.sellData,
+                borderWidth: 1
+
               },
               {
                 label: this.$t('RETURN'),

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('CUSTOMERS')" />
 
     <Buttons :buttonTitle="buttonTitle" @refreshData="customers = $event" />
 

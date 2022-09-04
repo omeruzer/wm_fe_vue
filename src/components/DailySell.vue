@@ -19,8 +19,10 @@
 
 <script>
 import DailySellChart from './DailySellChart';
+import Loader from './Loader';
+import axios from 'axios'
 export default {
-  components: { DailySellChart },
+  components: { DailySellChart,Loader },
   data() {
     return {
       sellData: [],
@@ -35,7 +37,7 @@ export default {
   },
   methods: {
     async getDaily() {
-      await this.$axios.post('http://localhost:8000/api/statistic/daily-sell')
+      await axios.post('/api/statistic/daily-sell')
         .then((result) => {
           this.period = result.data.sell.period
           this.sellData = result.data.sell.data
@@ -46,7 +48,7 @@ export default {
             datasets: [
               {
                 label: this.$t('SELL'),
-                backgroundColor: 'rgba(0, 255, 0, 0.3)',
+                backgroundColor: ['rgba(0, 255, 0, 0.3)'],
                 fill: true,
                 data: this.sellData
               },

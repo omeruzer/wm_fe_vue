@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('CURRENT')" />
     <div v-if="isComplete">
       <div class="row mb-3">
         <div class="col-md-12">

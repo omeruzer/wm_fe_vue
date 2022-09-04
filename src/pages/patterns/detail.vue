@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('PATTERNS')" />
 
     <div class="row" style="justify-content: end">
       <div class="d-flex justify-content-end">

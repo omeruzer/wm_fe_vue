@@ -20,7 +20,11 @@ export default new Vuex.Store({
   },
   actions: {
     LIST(context, model) {
-      axios.post('http://localhost:8000/api/' + model)
+      axios.post('/api/' + model, {
+          headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+        })
         .then((result) => {
           context.commit('LIST', result.data)
         }).catch((err) => {

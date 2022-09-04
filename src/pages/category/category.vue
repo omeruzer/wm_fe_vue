@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('CATEGORIES')" />
     <Buttons :buttonTitle="buttonTitle" @refreshData="list = $event" />
 
     <div class="row" v-if="isComplete">

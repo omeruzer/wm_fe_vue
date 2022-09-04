@@ -2,7 +2,6 @@
   <div>
     <!-- top bar navigation -->
     <div class="headerbar">
-
       <!-- LOGO -->
       <div class="headerbar-left">
         <router-link to="/dashboard" tag="a" class="logo">
@@ -11,7 +10,6 @@
       </div>
 
       <nav class="navbar-custom">
-
         <ul class="list-inline float-right mb-0">
           <!-- <li class="list-inline-item dropdown notif">
                         <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#"
@@ -166,26 +164,33 @@
                         </div>
 
                     </li> -->
-
-
+                    
+          <!-- ÇOKLU DİL SİSTEMİ -->
           <!-- <li class="list-inline-item dropdown notif">
-            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false"
-              aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle nav-user"
+              data-toggle="dropdown"
+              href="#"
+              aria-haspopup="false"
+              aria-expanded="false"
+            >
               <div class="">
                 {{ langControl() }}
               </div>
-
-
             </a>
-            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-
-
-              <a @click="switchLang('tr')" href="#" class="dropdown-item notify-item">
+            <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+              <a
+                @click="switchLang('tr')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/2000px-Flag_of_Turkey.svg.png"
-                      alt="">
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>TR</span>
@@ -193,13 +198,18 @@
                 </div>
               </a>
 
-
-              <a @click="switchLang('en')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('en')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/640px-Flag_of_the_United_Kingdom_%283-5%29.svg.png"
-                      alt="">
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>EN</span>
@@ -207,11 +217,18 @@
                 </div>
               </a>
 
-              <a @click="switchLang('de')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('de')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>DE</span>
@@ -219,11 +236,18 @@
                 </div>
               </a>
 
-              <a @click="switchLang('es')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('es')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>ES</span>
@@ -231,11 +255,18 @@
                 </div>
               </a>
 
-             <a @click="switchLang('ru')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('ru')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/200px-Flag_of_Russia.svg.png" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/200px-Flag_of_Russia.svg.png"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>RU</span>
@@ -243,11 +274,18 @@
                 </div>
               </a>
 
-             <a @click="switchLang('ja')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('ja')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>JA</span>
@@ -255,11 +293,18 @@
                 </div>
               </a>
 
-             <a @click="switchLang('le')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('le')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://www.bayraklar.info/data/flags/ultra/pl.png" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://www.bayraklar.info/data/flags/ultra/pl.png"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>LE</span>
@@ -267,21 +312,26 @@
                 </div>
               </a>
 
-             <a @click="switchLang('fr')" href="#" class="dropdown-item notify-item">
+              <a
+                @click="switchLang('fr')"
+                href="#"
+                class="dropdown-item notify-item"
+              >
                 <div class="d-flex align-items-center">
-                  <div style="width: 30px;">
-                    <img style="width: 100%;"
-                      src="https://www.bayraklar.info/data/flags/normal/fr.png" alt="">
+                  <div style="width: 30px">
+                    <img
+                      style="width: 100%"
+                      src="https://www.bayraklar.info/data/flags/normal/fr.png"
+                      alt=""
+                    />
                   </div>
                   <div class="ml-3">
                     <span>FR</span>
                   </div>
                 </div>
               </a>
-
             </div>
           </li> -->
-
         </ul>
 
         <ul class="list-inline menu-left mb-0 d-xs-block d-md-none">
@@ -291,9 +341,7 @@
             </button>
           </li>
         </ul>
-
       </nav>
-
     </div>
     <!-- End Navigation -->
   </div>
@@ -301,40 +349,39 @@
 
 <script>
 export default {
-  props:['resS'],
+  props: ["resS"],
   methods: {
     langControl() {
-      let lang = '';
-      if (this.$i18n.locale == 'tr') {
-        lang = 'TR';
-      } else if (this.$i18n.locale == 'en') {
-        lang = 'EN';
-      } else if (this.$i18n.locale == 'de') {
-        lang = 'DE';
-      } else if (this.$i18n.locale == 'es') {
-        lang = 'ES';
-      }else if (this.$i18n.locale == 'ru') {
-        lang = 'RU';
-      }else if (this.$i18n.locale == 'ja') {
-        lang = 'JA';
-      }else if (this.$i18n.locale == 'le') {
-        lang = 'LE';
-      }else if (this.$i18n.locale == 'fr') {
-        lang = 'FR';
+      let lang = "";
+      if (this.$i18n.locale == "tr") {
+        lang = "TR";
+      } else if (this.$i18n.locale == "en") {
+        lang = "EN";
+      } else if (this.$i18n.locale == "de") {
+        lang = "DE";
+      } else if (this.$i18n.locale == "es") {
+        lang = "ES";
+      } else if (this.$i18n.locale == "ru") {
+        lang = "RU";
+      } else if (this.$i18n.locale == "ja") {
+        lang = "JA";
+      } else if (this.$i18n.locale == "le") {
+        lang = "LE";
+      } else if (this.$i18n.locale == "fr") {
+        lang = "FR";
       }
       return lang;
     },
     switchLang(param) {
-      localStorage.setItem("lang", param)
-      console.log(localStorage.getItem('lang'));
-      this.$i18n.setLocale(param);
+      localStorage.setItem("lang", param);
+      this.$i18n.locale = param;
     },
-    sidebarSwitch(data){
-      this.resS=!data
-      this.$emit('sb',this.resS)
-    }
-  }
-}
+    sidebarSwitch(data) {
+      this.resS = !data;
+      this.$emit("sb", this.resS);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

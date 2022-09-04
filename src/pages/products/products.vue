@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('PRODUCTS')" />
     <div v-if="isComplete">
       <ItemFilter
         @itemFilter="list = $event"

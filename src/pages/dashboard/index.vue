@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main">
-      <Header />
+      <Header :resS="sidebarShow" @sb="sidebarShow = $event"/>
       <Sidebar class="sidebar" v-if="sidebarShow" />
       <div class="content-page">
         <div class="content">

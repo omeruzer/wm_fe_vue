@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('SETTINGS')" />
     <div v-if="load">
       <div class="row">
         <ShopSetting :user="userInfo" />

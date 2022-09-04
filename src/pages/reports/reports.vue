@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader title="Raporlar" />
+    <ContentHeader :title="$t('REPORTS')" />
   </div>
 </template>
 

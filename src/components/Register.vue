@@ -2,9 +2,9 @@
   <div class="col-md-6 col-lg-6">
     <div v-if="!isOkey" class="login-wrap p-4 p-md-5">
       <div v-if="isError" class="alert alert-danger">
-        Lütfen Tüm Alanları Doldurun
+        {{ $t("ALL_INPUT_ERR") }}
       </div>
-      <h3 class="text-center mb-12">Üye Ol</h3>
+      <h3 class="text-center mb-12">{{ $t("REGISTER") }}</h3>
       <form @submit.prevent="register()">
         <div class="form-group">
           <input
@@ -13,7 +13,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Ad Soyad"
+            :placeholder="$t('NAME_SURNAME')"
             required
           />
         </div>
@@ -24,7 +24,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="E-mail"
+            :placeholder="$t('E-MAIL')"
             required
           />
         </div>
@@ -35,7 +35,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Telefon"
+            :placeholder="$t('PHONE')"
             required
           />
         </div>
@@ -46,7 +46,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Mağaza Adı"
+            :placeholder="$t('SHOP_NAME')"
             required
           />
         </div>
@@ -57,7 +57,7 @@
             name="email"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Mağaza Adresi"
+            :placeholder="$t('SHOP_ADDRESS')"
             required
           />
         </div>
@@ -68,7 +68,7 @@
             name="password"
             autocomplete="off"
             class="form-control rounded-left"
-            placeholder="Şifre"
+            :placeholder="$t('PASSWORD')"
             required
           />
         </div>
@@ -77,28 +77,31 @@
             type="submit"
             class="form-control btn btn-primary rounded submit px-3"
           >
-            Üye Ol
+            {{ $t("SIGNUP") }}
           </button>
         </div>
       </form>
       <div class="row d-flex justify-content-center">
         <div class="form-group">
-          <router-link to="/"><span>Hesabım Var</span></router-link>
+          <router-link to="/"
+            ><span>{{ $t("HAS_ACCOUNT") }}</span></router-link
+          >
         </div>
       </div>
     </div>
     <div v-else class="login-wrap p-4 p-md-5">
-      <h3 class="text-center mb-12">Tebrikler! 🎉</h3>
+      <h3 class="text-center mb-12">{{ $t("SUCCESS") }}! 🎉</h3>
       <div class="alert alert-success">
-        <span
-          >Başarıyla kayıt oldunuz! Giriş Yap ekranından giriş
-          yapabilirsiniz.</span
-        >
+        <span>{{ $t("REGISTER_TEXT") }}.</span>
       </div>
       <div class="row d-flex justify-content-center">
-        <router-link to="/"
-          ><span style="cursor: pointer">Anasyfaya Dön</span></router-link
-        >
+        <div class="">
+          <router-link to="/"
+            ><span style="cursor: pointer">{{
+              $t("GO_TO_BACK_HOME")
+            }}</span></router-link
+          >
+        </div>
       </div>
     </div>
   </div>

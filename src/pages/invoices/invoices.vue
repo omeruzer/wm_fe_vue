@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentHeader :title="title" />
+    <ContentHeader :title="$t('INVOICES')" />
     <div v-if="isComplete">
       <InvoiceFilter
         @itemFilter="list = $event"
