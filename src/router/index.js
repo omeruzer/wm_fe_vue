@@ -33,7 +33,8 @@ import Forgot from "../pages/forgot_password/forgot.vue"
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',  
+    path: '/',
+    name: 'login',
     component: Login
   },
   {
@@ -47,6 +48,15 @@ const routes = [{
   {
     path: '/dashboard',
     component: Dashboard,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem("token") && !localStorage.getItem('user')) {
+        return next({
+          name: 'login'
+        })
+      } else {
+        next()
+      }
+    },
     children: [{
         path: '/',
         component: One,

@@ -120,23 +120,15 @@ export default {
     };
   },
   methods: {
-    logout() {
-      axios
+    async logout() {
+      await axios
         .post("/api/logout")
-        .then((result) => {
-          localStorage.clear();
-          this.$router.push("/");
-          console.log(result.data);
+        .then(async (result) => {
+          await localStorage.removeItem("token");
+          await localStorage.removeItem("user");
+          await this.$router.push("/");
         })
         .catch((err) => {});
-      // this.$auth
-      //   .logout()
-      //   .then((result) => {
-      //     this.$router.push("/");
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
     },
   },
 };
