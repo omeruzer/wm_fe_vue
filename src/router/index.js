@@ -6,6 +6,7 @@ import One from '../pages/dashboard/home.vue'
 import Invoices from '../pages/invoices/invoices.vue'
 import InvoicesDetail from '../pages/invoices/detail.vue'
 import Products from '../pages/products/products.vue'
+import ProductsDetail from '../pages/products/detail.vue'
 import Categories from '../pages/category/category.vue'
 import CategoriesDetail from '../pages/category/detail.vue'
 import Patterns from '../pages/patterns/patterns.vue'
@@ -28,6 +29,8 @@ import SeasonsDetail from '../pages/seasons/detail.vue'
 import Settings from '../pages/settings/settings.vue'
 import Register from "../pages/register/register.vue"
 import Forgot from "../pages/forgot_password/forgot.vue"
+import Internel from "../pages/internel/internel.vue"
+import InternelDetail from "../pages/internel/detail.vue"
 
 
 Vue.use(VueRouter)
@@ -62,6 +65,14 @@ const routes = [{
         component: One,
       },
       {
+        path: '/internel',
+        component: Internel,
+      },
+      {
+        path: '/internel/:id',
+        component: InternelDetail,
+      },
+      {
         path: '/invoices',
         component: Invoices,
       },
@@ -72,6 +83,10 @@ const routes = [{
       {
         path: '/products',
         component: Products,
+      },
+      {
+        path: '/products/:id',
+        component: ProductsDetail,
       },
       {
         path: '/categories',

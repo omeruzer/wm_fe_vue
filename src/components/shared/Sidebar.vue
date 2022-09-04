@@ -36,6 +36,11 @@
               </router-link>
             </li>
             <li class="submenu">
+              <router-link to="/internel" tag="a">
+                <i class="fa fa-arrow-right-arrow-left"></i> Dahili Giriş-Çıkış
+              </router-link>
+            </li>
+            <li class="submenu">
               <router-link to="/categories" tag="a">
                 <i class="fas fa-list"></i> {{ $t("CATEGORIES") }}
               </router-link>

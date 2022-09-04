@@ -833,7 +833,7 @@
                 class="col-md-12"
                 style="display: flex; justify-content: end; align-items: center"
               >
-                <button class="btn btn-success" @click="addInvoiceProduct">
+                <button class="btn btn-success" @click="addDataProduct">
                   <i class="fa fa-plus"></i> {{ $t("ADD_PRODUCT_TO_INVOICE") }}
                 </button>
               </div>
@@ -862,6 +862,154 @@
           </div>
           <div class="modal-footer">
             <button type="button" @click="addInvoice" class="btn btn-primary">
+              {{ $t("SAVE") }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dahili Giriş Çıkış Ekle -->
+    <div
+      v-if="btnType == 'internel'"
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Dahili Giriş Çıkış
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <b-form-group :label="'Dahili Türü'" v-slot="{ ariaDescribedby }">
+              <div class="d-flex">
+                <b-form-radio
+                  v-model="form.type"
+                  :aria-describedby="ariaDescribedby"
+                  class="m-2"
+                  name="some-radios"
+                  :value="1"
+                >
+                  Giriş
+                </b-form-radio>
+                <b-form-radio
+                  v-model="form.type"
+                  :aria-describedby="ariaDescribedby"
+                  class="m-2"
+                  name="some-radios"
+                  :value="0"
+                >
+                  Çıkış
+                </b-form-radio>
+              </div>
+            </b-form-group>
+            <b-form-group :label="'Tarih'">
+              <div class="d-flex">
+                <input
+                  type="date"
+                  name=""
+                  v-model="form.internel_date"
+                  id=""
+                  class="form-control"
+                />
+                <!-- <b-form-datepicker
+                  v-model="form.invoice_date"
+                ></b-form-datepicker> -->
+              </div>
+            </b-form-group>
+            <div
+              class="row"
+              v-for="(item, index) in invoiceProducts"
+              :key="index"
+            >
+              <div class="col-md-6">
+                <b-form-group>
+                  <label for="">{{ $t("PRODUCT") }}</label>
+                  <select
+                    id=""
+                    v-model="item.product_id"
+                    class="form-control mb-3"
+                  >
+                    <option
+                      class=""
+                      v-for="(item, i) in products"
+                      :key="i"
+                      :value="item.id"
+                    >
+                      {{ item.code }} /{{ item.name }}
+                    </option>
+                  </select>
+                </b-form-group>
+              </div>
+              <div class="col-md-2">
+                <b-form-group>
+                  <label for="">{{ $t("QTY") }}</label>
+                  <b-form-input
+                    @change="invoiceProductCount"
+                    v-model="item.qty"
+                    :placeholder="$t('QTY')"
+                    required
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </div>
+              <div
+                class="col-md-1"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <button
+                  class="btn btn-danger"
+                  @click="removeInvoiceProductControl(item.id)"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div
+                class="col-md-12"
+                style="display: flex; justify-content: end; align-items: center"
+              >
+                <button class="btn btn-success" @click="addDataProduct">
+                  <i class="fa fa-plus"></i> {{ $t("ADD") }}
+                </button>
+              </div>
+            </div>
+            <div class="row mt-3 d-flex justify-content-end">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-header">Detay</div>
+                  <div class="card-body">
+                    <p>
+                      {{ $t("TOTAL_PRODUCT_TYPE") }} :
+                      <b>{{ invoiceProducts.length }}</b>
+                    </p>
+                    <p>
+                      {{ $t("TOTAL_PRODUCT_COUNT") }} :
+                      <b>{{ totalProductCount }}</b>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" @click="addInternel" class="btn btn-primary">
               {{ $t("SAVE") }}
             </button>
           </div>
@@ -1267,6 +1415,37 @@ export default {
         })
         .catch((err) => {});
     },
+    async addInternel() {
+      await axios
+        .post("/api/internel/add", this.form)
+        .then(async (result) => {
+          await this.$store.dispatch("LIST", "internel");
+          await this.invoiceProducts.map(async (e) => {
+            await axios
+              .post("/api/internel-product/add", {
+                internel_id: Number(result.data.id),
+                product_id: Number(e.product_id),
+                qty: Number(e.qty),
+              })
+              .catch((err) => {});
+          });
+          // await this.$store.dispatch("LIST", "invoice-product");
+
+          await this.$swal.fire(
+            this.$t("SUCCESS") + "!",
+            this.$t("SUCCESS_TEXT"),
+            "success"
+          );
+          setTimeout(async () => {
+            this.fun();
+            // await this.$emit("refreshData", this.$store.state.list);
+          }, 1500);
+          this.form = {};
+          this.invoiceProducts = [];
+          // await location.reload();
+        })
+        .catch((err) => {});
+    },
     async addInvoice() {
       await axios
         .post("/api/invoice/add", this.form)
@@ -1299,7 +1478,7 @@ export default {
         })
         .catch((err) => {});
     },
-    async addInvoiceProduct() {
+    async addDataProduct() {
       const newProduct = {
         id: Math.ceil(Math.random() * 1000000),
         product_id: null,

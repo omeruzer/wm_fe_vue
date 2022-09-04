@@ -112,7 +112,7 @@
               </div>
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
-                  <label for="">{{ $t("TOTAL_PRODUCT_COUNT") }}:</label>
+                  <label for="">Mağazaya gelen ilk adet:</label>
                   <span>{{ item.qty }}</span>
                 </div>
               </div>
@@ -124,8 +124,20 @@
               </div>
               <div class="row d-flex justify-content-start">
                 <div class="form-group ml-3 d-flex justify-content-start">
+                  <label for="">Ürünün İade Adedi:</label>
+                  <span>{{ item.returnCount }}</span>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-start">
+                <div class="form-group ml-3 d-flex justify-content-start">
+                  <label for="">Ürünün dahili giriş-çıkış adedi:</label>
+                  <span>{{ item.internelQty }}</span>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-start">
+                <div class="form-group ml-3 d-flex justify-content-start">
                   <label for="">{{ $t("REMANING_PRODUCT_COUNT") }}:</label>
-                  <span>{{ item.qty - item.sellCount }}</span>
+                  <span>{{ item.endCount }}</span>
                 </div>
               </div>
               <div class="row d-flex justify-content-start">
@@ -145,7 +157,7 @@
                   <span v-if="item.content == null">
                     {{ $t("PRODUCT_CONTENT_NOT") }}.
                   </span>
-                  <span v-else>{{ item.content }} </span>
+                  <span v-else>{{ item.content ? item.content : "-" }} </span>
                 </div>
               </div>
             </div>
