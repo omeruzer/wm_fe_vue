@@ -772,7 +772,18 @@
               <div class="col-md-6">
                 <b-form-group>
                   <label for="">{{ $t("PRODUCT") }}</label>
-                  <select
+                  <input
+                    type="number"
+                    name=""
+                    v-model="item.product"
+                    id=""
+                    @input="searchList(item.product, item.id)"
+                    class="form-control"
+                  />
+                  <div v-if="!item.control" style="display: absolute">
+                    <span style="color: red">Kod hatalı!</span>
+                  </div>
+                  <!-- <select
                     id=""
                     v-model="item.product_id"
                     class="form-control mb-3"
@@ -785,7 +796,7 @@
                     >
                       {{ item.code }} /{{ item.name }}
                     </option>
-                  </select>
+                  </select> -->
                 </b-form-group>
               </div>
               <div class="col-md-2">
@@ -1026,7 +1037,7 @@ export default {
   data() {
     return {
       money: JSON.parse(localStorage.getItem("user")).money,
-
+      searchProduct: [],
       modalShow: false,
       img: {},
       form: {},
@@ -1047,6 +1058,7 @@ export default {
           product_id: null,
           qty: null,
           price: null,
+          control: 0,
         },
       ],
     };
@@ -1072,6 +1084,36 @@ export default {
     this.getProduct();
   },
   methods: {
+    async searchList(data, listId) {
+      if (data.length > 0) {
+        await axios
+          .post("/api/product/search-product", { code: data })
+          .then(async (result) => {
+            const check = await result.data.find((e) => e.code == data);
+            if (check) {
+              const product = await this.products.find((e) => e.code == data);
+              console.log(product);
+              const list = await this.invoiceProducts.find(
+                (e) => e.id == listId
+              );
+              list.control = await 1;
+              list.product_id = await product.id;
+              console.log(list);
+              console.log(data);
+              console.log("var");
+            } else {
+              const list = this.invoiceProducts.find((e) => e.id == listId);
+              list.control = 0;
+              console.log("yok");
+            }
+          })
+          .catch((err) => {});
+      } else {
+        const list = this.invoiceProducts.find((e) => e.id == listId);
+        list.control = 0;
+        console.log("boş");
+      }
+    },
     async handleFileUpload(event) {
       this.form.file = event.target.files[0];
       console.log(this.form);
@@ -1484,6 +1526,7 @@ export default {
         product_id: null,
         qty: null,
         price: null,
+        control:0,
       };
 
       this.invoiceProducts.push(newProduct);

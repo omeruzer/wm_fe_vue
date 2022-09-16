@@ -269,6 +269,22 @@ import ContentHeader from "@/components/shared/ContentHeader";
 import axios from "axios";
 export default {
   middleware: "auth-admin",
+  metaInfo: {
+    title: 'asdasd',
+    description: "asd",
+    htmlAttrs: {
+      lang: localStorage.getItem("lang") || "tr",
+      amp: true,
+    },
+    meta: [
+      { charset: "utf-8" },
+      {
+        name: "description",
+        content: "An example Vue application with vue-meta.",
+      },
+      { name: "keywords", content: "work,work managment" },
+    ],
+  },
   data() {
     return {
       title: this.$t("PRODUCTS"),

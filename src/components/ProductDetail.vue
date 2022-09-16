@@ -160,6 +160,14 @@
                   <span v-else>{{ item.content ? item.content : "-" }} </span>
                 </div>
               </div>
+              <div class="row d-flex justify-content-center">
+                <div class="" style="width: 100%; heigth: 100px">
+                  <barcode
+                    style="width: 100%; heigth: 100%"
+                    :value="item.code"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
